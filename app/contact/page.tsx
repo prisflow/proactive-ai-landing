@@ -9,7 +9,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 export default function ContactPage() {
   const [state, setState] = useState<"idle" | "loading" | "ok" | "error">("idle");
 
-  const API_URL = process.env.NEXT_PUBLIC_CONTACT_API || "/api/contact";
+  // 表单 POST 到同域 Edge Function 路由（EdgeOne 部署时自动挂载 edge-functions/api/contact.js）
+  const API_URL = "/api/contact";
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

@@ -19,4 +19,5 @@ npm run build   # 产物在 out/
 
 ## 环境变量
 
-见 `.env.example`（下载链接 `NEXT_PUBLIC_DEMO_URL`、联系表单 `NEXT_PUBLIC_CONTACT_API`）。
+- `NEXT_PUBLIC_DEMO_URL`：下载链接（COS/CDN 直链），见 `.env.example`
+- 联系表单固定 POST 到 `/api/contact`（EdgeOne 自动挂载 `edge-functions/api/contact.js`）
