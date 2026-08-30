@@ -21,3 +21,7 @@ npm run build   # 产物在 out/
 
 - `NEXT_PUBLIC_DEMO_URL`：下载链接（COS/CDN 直链），见 `.env.example`
 - 联系表单固定 POST 到 `/api/contact`（EdgeOne 自动挂载 `edge-functions/api/contact.js`）
+
+## 博客
+
+技术分享：[修仙插件是如何实现的](https://proactiveai.prisflow.com/blog/plugin-ecosystem-cultivation)
