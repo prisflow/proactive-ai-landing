@@ -15,7 +15,7 @@ const screenshots = [
   },
   {
     label: "设置面板",
-    description: "语言切换、外观主题、字体大小与模型服务配置，全部数据本地存储",
+    description: "语言切换、外观主题、字体大小与模型服务配置；公网中继支持链接与二维码扫码接入，手机随时远程使用。全部数据本地存储",
     image: "/example3.png",
   },
 ];

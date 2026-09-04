@@ -1,5 +1,5 @@
 ---
-title: "Proactive AI 桌面版 v1.0 正式发布"
+title: "Proactive AI 桌面版 v0.5.0 正式发布"
 date: "2026-08-29"
 excerpt: "一款会自己切换上下文的 AI 聊天助手正式上线：对话按「上下文 → 工具 → 静态逻辑 / LLM Flow」组织，UI 消息与文本消息双形态，压缩层按上下文调优让 token 成本越用越低。"
 ---

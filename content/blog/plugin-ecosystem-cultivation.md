@@ -39,13 +39,12 @@ flowchart LR
 | `create_world` | 开局创世 | 清空世界 → 生成世界骨架、出身/天资池、推世界屏；成功后紧跟 NPC 与大事件生成 |
 | `create_character` | 建角 | 从出身/天资池选出身天资、取名建角、推首屏 |
 | `reset_character` | 重来本世 | 保留世界与大事件，仅清空角色从池中重建 |
-| `era_rebirth` | 百年轮回 | 推演指定时间后演化新世界新角色，保留纪元史（多周目） |
 | `generate_npcs` | 生态扩充 | 生成一批 NPC（凡人 2 + 修士 7 + 大修士 1），自动防重名，可多批扩充 |
 | `generate_major_events` | 大事件时间线 | 生成未来五十年 15-30 条大事件（at/by/type/summary），补充世界时间线 |
 | `game_turn` | 回合推进 | 推进剧情：加月、切主修/突破、闭关时长；搜刮丹药功法、好感/道侣/记忆在此表达 |
 | `game_query` | 静态查问 | 纯静态 LLM 查询：世界观/数值/档案/NPC 信息，不推时间 |
 
-分工逻辑：**初始化链**（create_world → generate_npcs → generate_major_events）由规则约束时序；**玩法主循环**由 game_turn 承担；**元操作**（reset/rebirth）单独成工具，避免污染主流程。
+分工逻辑：**初始化链**（create_world → generate_npcs → generate_major_events）由规则约束时序；**玩法主循环**由 game_turn 承担；**元操作**（reset）单独成工具，避免污染主流程。
 
 ## 三种节点
 
