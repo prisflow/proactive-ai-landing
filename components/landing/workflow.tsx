@@ -27,7 +27,7 @@ export function Workflow() {
       <div className="container mx-auto max-w-6xl px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">工作流程</h2>
-          <p className="mt-3 text-white/55 max-w-lg mx-auto">
+          <p className="mt-3 text-slate-600 max-w-lg mx-auto">
             从安装到托管运行，四步打造场景化的 AI 对话。
           </p>
         </div>
@@ -43,7 +43,7 @@ export function Workflow() {
               >
                 <div className={`flex-1 ${i % 2 === 0 ? "md:text-right" : "md:text-left"}`}>
                   <h3 className="text-lg font-semibold">{item.title}</h3>
-                  <p className="mt-1 text-sm text-white/55">{item.description}</p>
+                  <p className="mt-1 text-sm text-slate-600">{item.description}</p>
                 </div>
                 <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border bg-background text-sm font-bold">
                   {item.step}

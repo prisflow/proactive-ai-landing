@@ -22,7 +22,7 @@ export function Scenarios() {
       <div className="container mx-auto max-w-6xl px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">适用场景</h2>
-          <p className="mt-3 text-white/55 max-w-lg mx-auto">
+          <p className="mt-3 text-slate-600 max-w-lg mx-auto">
             上下文切换让 Proactive AI 在一个对话里承载多个专业场景。
           </p>
         </div>
@@ -33,7 +33,7 @@ export function Scenarios() {
                 {item.badge}
               </span>
               <h3 className="text-base font-semibold">{item.title}</h3>
-              <p className="mt-2 text-sm text-white/55 leading-relaxed">
+              <p className="mt-2 text-sm text-slate-600 leading-relaxed">
                 {item.description}
               </p>
             </div>

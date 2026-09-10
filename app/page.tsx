@@ -10,7 +10,7 @@ import { Cta } from "@/components/landing/cta";
 
 export default function Home() {
   return (
-    <div className="relative bg-[#05060a] text-white">
+    <div className="relative bg-white text-slate-900">
       <SmoothScroll />
       <Aurora />
       <div className="relative">

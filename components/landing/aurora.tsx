@@ -46,18 +46,18 @@ export function Aurora() {
       {/* 光斑 */}
       <div
         data-blob
-        className="absolute -top-40 left-[8%] h-[34rem] w-[34rem] rounded-full bg-indigo-600/25 blur-[140px]"
+        className="absolute -top-40 left-[8%] h-[34rem] w-[34rem] rounded-full bg-blue-300/40 blur-[140px]"
       />
       <div
         data-blob
-        className="absolute top-[30%] right-[2%] h-[28rem] w-[28rem] rounded-full bg-violet-600/20 blur-[130px]"
+        className="absolute top-[30%] right-[2%] h-[28rem] w-[28rem] rounded-full bg-sky-300/40 blur-[130px]"
       />
       <div
         data-blob
-        className="absolute bottom-[-10%] left-[30%] h-[26rem] w-[26rem] rounded-full bg-emerald-500/12 blur-[130px]"
+        className="absolute bottom-[-10%] left-[30%] h-[26rem] w-[26rem] rounded-full bg-indigo-200/50 blur-[130px]"
       />
       {/* 顶部渐隐，与导航融合 */}
-      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#05060a] to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white to-transparent" />
     </div>
   );
 }
