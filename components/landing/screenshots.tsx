@@ -28,7 +28,7 @@ export function Screenshots() {
       <div className="container mx-auto max-w-6xl px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">产品预览</h2>
-          <p className="mt-3 text-muted-foreground max-w-lg mx-auto">
+          <p className="mt-3 text-white/55 max-w-lg mx-auto">
             简洁直观的界面设计，轻松上手。
           </p>
         </div>
@@ -47,7 +47,7 @@ export function Screenshots() {
               />
               <div className="p-4">
                 <h3 className="text-sm font-semibold">{item.label}</h3>
-                <p className="mt-1 text-xs text-muted-foreground">{item.description}</p>
+                <p className="mt-1 text-xs text-white/55">{item.description}</p>
               </div>
             </div>
           ))}
