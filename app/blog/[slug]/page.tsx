@@ -54,7 +54,7 @@ export default async function BlogPostPage({ params }: Props) {
   const contentHtml = result.toString();
 
   return (
-    <div className="container mx-auto max-w-6xl px-4 py-12">
+    <div className="container mx-auto max-w-6xl px-4 pt-24 pb-12">
       <div className="flex gap-8">
         <aside className="hidden lg:block w-56 shrink-0">
           <div className="sticky top-8 max-h-[calc(100vh-4rem)] overflow-y-auto">

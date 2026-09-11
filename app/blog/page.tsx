@@ -6,7 +6,7 @@ export default function BlogPage() {
   const posts = getAllPosts();
 
   return (
-    <div className="container mx-auto max-w-3xl px-4 py-12">
+    <div className="container mx-auto max-w-3xl px-4 pt-24 pb-12">
       <h1 className="text-3xl font-bold tracking-tight mb-2">博客</h1>
       <p className="text-muted-foreground mb-10">
         Proactive AI 产品动态、技术分享与插件开发实践。

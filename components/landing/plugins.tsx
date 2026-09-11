@@ -33,7 +33,7 @@ export function Plugins() {
   }, []);
 
   return (
-    <section className="relative py-20 md:py-28">
+    <section id="plugins" className="relative scroll-mt-20 py-20 md:py-28">
       <div className="container mx-auto max-w-6xl px-4">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <Reveal>

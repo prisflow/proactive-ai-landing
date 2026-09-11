@@ -24,7 +24,7 @@ export function Screenshots() {
   const [zoom, setZoom] = useState<{ src: string; label: string } | null>(null);
 
   return (
-    <section id="screenshots" className="py-16 md:py-24">
+    <section id="screenshots" className="py-16 md:py-24 scroll-mt-20">
       <div className="container mx-auto max-w-6xl px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">产品预览</h2>
