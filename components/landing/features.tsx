@@ -80,10 +80,10 @@ export function Features() {
               data-reveal-item
               className={`group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm ring-1 ring-transparent transition-all duration-300 hover:bg-blue-50/40 hover:ring-2 ${f.ring}`}
             >
-              <div className={`mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-gradient-to-b ${f.tint} border border-white/10`}>
+              <div className={`mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-gradient-to-b ${f.tint}`}>
                 <f.icon className={`h-5 w-5 ${f.ic}`} />
               </div>
-              <h3 className="text-base font-semibold text-white">{f.title}</h3>
+              <h3 className="text-base font-semibold text-slate-900">{f.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">{f.desc}</p>
             </div>
           ))}
