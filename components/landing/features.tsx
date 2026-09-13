@@ -4,7 +4,7 @@
  * 核心能力：六张玻璃卡，滚动时依次入场（stagger）。
  */
 import {
-  MessagesSquare, Puzzle, LayoutDashboard, MonitorSmartphone, Network, HardDrive,
+  MessagesSquare, Sparkles, LayoutDashboard, MonitorSmartphone, Network, HardDrive,
 } from "lucide-react";
 import { Reveal } from "./reveal";
 
@@ -18,9 +18,9 @@ const FEATURES = [
     ic: "text-blue-600",
   },
   {
-    icon: Puzzle,
-    title: "插件三件套",
-    desc: "上下文（Context）＋工具（Tools）＋流（Flow）声明即注册：宿主接管会话管线，插件只写业务。",
+    icon: Sparkles,
+    title: "对话造插件",
+    desc: "把需求讲清楚就能长出完整插件：AI 负责需求问询、设定稿确认、分层实现与多轮试玩验证。底层仍是上下文＋工具＋Flow 三件套。",
     tint: "from-indigo-500/10 to-transparent",
     ring: "group-hover:ring-indigo-500/40",
     ic: "text-indigo-600",

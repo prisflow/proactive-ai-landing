@@ -43,7 +43,7 @@ export function Hero() {
         <div data-hero-badge className="mb-7 flex justify-center">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1.5 text-xs text-blue-700 shadow-sm">
             <Sparkles className="h-3.5 w-3.5 text-blue-500" />
-            v0.6.4 双端发布 · 修仙世界 0.6.4
+            v0.6.5 双端发布 · 对话造插件
             <ArrowRight className="h-3 w-3 opacity-50" />
           </span>
         </div>
@@ -82,7 +82,7 @@ export function Hero() {
         <div data-hero-meta className="mx-auto mt-14 grid max-w-2xl grid-cols-3 gap-4 text-center">
           {[
             ["16+", "内置 UI 组件"],
-            ["3 件套", "上下文 · 工具 · Flow"],
+            ["0 代码", "对话内造插件"],
             ["100%", "插件数据本地化"],
           ].map(([v, k]) => (
             <div key={k} className="rounded-2xl border border-slate-200 bg-white px-4 py-4 shadow-sm">
