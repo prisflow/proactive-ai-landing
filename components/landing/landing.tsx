@@ -9,6 +9,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { RenderedPost } from "@/lib/blog";
+import { Mermaid } from "@/components/mermaid";
 
 const DEMO_URL = process.env.NEXT_PUBLIC_DEMO_URL || "#";
 const REPO_URL = "https://github.com/prisflow/proactive-ai-desktop";
@@ -311,6 +312,8 @@ export function Landing({ posts }: { posts: RenderedPost[] }) {
               className="blog-content"
               dangerouslySetInnerHTML={{ __html: activePost?.html ?? "" }}
             />
+            {/* mermaid 图渲染：key 随文章切换重挂，重新扫描新文章的 mermaid 块 */}
+            <Mermaid key={activePost?.slug} />
           </article>
         </section>
 
