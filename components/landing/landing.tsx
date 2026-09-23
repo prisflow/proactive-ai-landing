@@ -8,8 +8,10 @@
  */
 
 import { useEffect, useRef, useState } from "react";
+import mermaid from "mermaid";
 import type { RenderedPost } from "@/lib/blog";
-import { Mermaid } from "@/components/mermaid";
+
+mermaid.initialize({ startOnLoad: false, theme: "neutral" });
 
 const DEMO_URL = process.env.NEXT_PUBLIC_DEMO_URL || "#";
 const REPO_URL = "https://github.com/prisflow/proactive-ai-desktop";
@@ -30,6 +32,7 @@ export function Landing({ posts }: { posts: RenderedPost[] }) {
   const heroInnerRef = useRef<HTMLDivElement>(null);
   const headerLogoRef = useRef<HTMLDivElement>(null);
   const articleRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(posts[0]?.slug ?? "");
   const [activeHeading, setActiveHeading] = useState("");
   const activePost = posts.find((p) => p.slug === active) ?? posts[0];
@@ -44,6 +47,37 @@ export function Landing({ posts }: { posts: RenderedPost[] }) {
       articleRef.current?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
     });
   };
+
+  // ---- 正文内容注入 + mermaid 渲染：ref 注入式，React 的 diff 永不拥有此 div 的 children ----
+  // （dangerouslySetInnerHTML 会在某些重渲染时重放 innerHTML，覆盖掉 mermaid 替换结果——本 effect 根除该问题）
+  useEffect(() => {
+    const el = contentRef.current;
+    if (!el || !activePost) return;
+    // 1. 注入当前文章 HTML
+    el.innerHTML = activePost.html;
+
+    // 2. mermaid 扫描渲染（防重入 + 唯一 id，失败不静默）
+    el.querySelectorAll<HTMLElement>(".language-mermaid").forEach(async (block) => {
+      if (block.dataset.mermaidDone) return;
+      block.dataset.mermaidDone = "1";
+      const pre = block.closest("pre");
+      if (!pre) return;
+
+      const id = `mermaid-${crypto.randomUUID()}`;
+      const wrapper = document.createElement("div");
+      wrapper.className = "mermaid-wrapper my-6 flex justify-center";
+
+      try {
+        const { svg } = await mermaid.render(id, block.textContent || "");
+        wrapper.innerHTML = svg;
+      } catch (e) {
+        console.error("[mermaid] 渲染失败", e);
+        wrapper.textContent = "[Mermaid 渲染失败]";
+      }
+
+      pre.replaceWith(wrapper);
+    });
+  }, [activePost]);
 
   useEffect(() => {
     const html = document.documentElement;
@@ -292,7 +326,7 @@ export function Landing({ posts }: { posts: RenderedPost[] }) {
             })}
           </nav>
 
-          {/* 正文：居中于整个视口；切换文章时平滑滚回此处 */}
+          {/* 正文：居中于整个视口；内容 ref 注入（React 永不重放此子树），切换文章时平滑滚回此处 */}
           <article ref={articleRef} data-reveal className="mx-auto mt-10 max-w-3xl scroll-mt-28 md:mt-14">
             <header className="mb-8 border-b border-neutral-200 pb-6">
               <p className="font-mono text-[11px] tracking-[0.2em] text-neutral-400">
@@ -307,12 +341,7 @@ export function Landing({ posts }: { posts: RenderedPost[] }) {
                 </p>
               )}
             </header>
-            <div
-              className="blog-content"
-              dangerouslySetInnerHTML={{ __html: activePost?.html ?? "" }}
-            />
-            {/* mermaid 图渲染：slug 变化即重扫，重新扫描新文章的 mermaid 块 */}
-            <Mermaid slug={activePost?.slug} />
+            <div ref={contentRef} className="blog-content" />
           </article>
         </section>
 
