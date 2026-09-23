@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Proactive AI — 会自己运转的 AI 伙伴 | Prisflow",
+  title: "Proactive AI",
   description:
     "以对话为入口，向下扎根插件生态——上下文、工具、LLM Flow 三件套让每个插件自成世界。引擎自动收拾会话、渲染消息 UI、压缩上下文，开发者只管创造。",
   icons: {
