@@ -308,7 +308,6 @@ export function Landing({ posts }: { posts: RenderedPost[] }) {
               )}
             </header>
             <div
-              key={activePost?.slug}
               className="blog-content"
               dangerouslySetInnerHTML={{ __html: activePost?.html ?? "" }}
             />
