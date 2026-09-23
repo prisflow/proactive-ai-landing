@@ -37,7 +37,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <Link href="/blog" className="hover:text-foreground transition-colors">
+                <Link href="/#blog" className="hover:text-foreground transition-colors">
                   产品动态
                 </Link>
               </li>

@@ -311,8 +311,8 @@ export function Landing({ posts }: { posts: RenderedPost[] }) {
               className="blog-content"
               dangerouslySetInnerHTML={{ __html: activePost?.html ?? "" }}
             />
-            {/* mermaid 图渲染：key 随文章切换重挂，重新扫描新文章的 mermaid 块 */}
-            <Mermaid key={activePost?.slug} />
+            {/* mermaid 图渲染：slug 变化即重扫，重新扫描新文章的 mermaid 块 */}
+            <Mermaid slug={activePost?.slug} />
           </article>
         </section>
 
