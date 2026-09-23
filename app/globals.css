@@ -56,7 +56,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.55 0.17 255);
+  --primary: oklch(0.145 0 0);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -67,7 +67,7 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.62 0.17 255);
+  --ring: oklch(0.145 0 0);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -90,17 +90,32 @@
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
   }
   html {
     scroll-behavior: smooth;
+    /* 页级滚动条隐藏：滚轮/触控滚动不受影响（检测带几何不再受滚动条宽度干扰） */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  html::-webkit-scrollbar {
+    display: none;
   }
 }
 
 ::selection {
-  background: oklch(0.708 0 0);
+  background: oklch(0.145 0 0);
   color: white;
 }
 
+/* ===== 博客正文排版（Markdown 渲染） ===== */
+/* 章节锚点避让收拢后的顶栏（左侧章节目录点击滚动用） */
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4 {
+  scroll-margin-top: 7rem;
+}
 .blog-content h1 {
   @apply text-2xl font-bold mt-8 mb-4;
   scroll-margin-top: 5rem;
@@ -133,17 +148,88 @@
 .blog-content td { @apply border border-border px-3 py-2; }
 .blog-content tr:nth-child(even) { @apply bg-muted/30; }
 
-/* ===== Landing 专用 ===== */
-.landing-grid {
-  background-image:
-    linear-gradient(to right, rgb(15 23 42 / 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(15 23 42 / 0.05) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 75%);
+/* ===== 首页「白之序」：顶栏落点 ===== */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 40;
+  pointer-events: none;
+  transition: background-color 0.4s ease;
+}
+html.header-on .site-header {
+  pointer-events: auto;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.site-header .header-inner {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+html.header-on .site-header .header-inner {
+  opacity: 1;
+  pointer-events: auto;
+}
+.site-header .header-line {
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.5s ease;
+}
+html.header-on .site-header .header-line {
+  transform: scaleX(1);
 }
 
-/* ===== GSAP 入场动画初态（SSG 首帧即隐藏，杜绝闪现；由 reveal.tsx 的 to 动画揭示；noscript 兜底恢复） ===== */
-[data-reveal-item] {
+/* ===== Hero logo：滚动收拢（只动 transform/opacity，值由 JS 写入） ===== */
+.hero-logo-inner {
+  will-change: transform, opacity;
+}
+html.reduced .hero-logo-inner {
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+/* ===== 滚动提示 ===== */
+.scroll-hint {
+  transition: opacity 0.3s ease;
+}
+html.hint-off .scroll-hint {
   opacity: 0;
-  transform: translateY(24px);
+}
+.scroll-hint .hint-line {
+  animation: hint-drop 2.2s ease-in-out infinite;
+  transform-origin: top;
+}
+@keyframes hint-drop {
+  0% {
+    transform: scaleY(0);
+  }
+  45% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+html.reduced .scroll-hint .hint-line {
+  animation: none;
+}
+
+/* ===== 入场 reveal（初态隐藏，JS 逐个显现；noscript 兜底） ===== */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--d, 0s);
+}
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+html.reduced [data-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
 }

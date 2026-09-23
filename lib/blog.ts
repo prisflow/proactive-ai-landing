@@ -1,6 +1,15 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { remark } from "remark";
+import remarkGfm from "remark-gfm";
+import remarkRehype from "remark-rehype";
+import rehypeHighlight from "rehype-highlight";
+import rehypeSlug from "rehype-slug";
+import rehypeStringify from "rehype-stringify";
+import type { Root } from "mdast";
+import { visit } from "unist-util-visit";
+import Slugger from "github-slugger";
 
 /**
  * Blog utilities for SSG.
@@ -51,4 +60,56 @@ export function getPostBySlug(slug: string): BlogPost | null {
     excerpt: data.excerpt || "",
     content,
   };
+}
+
+export type RenderedHeading = {
+  slug: string;
+  text: string;
+  level: number;
+};
+
+export type RenderedPost = {
+  slug: string;
+  title: string;
+  date: string;
+  excerpt: string;
+  html: string;
+  headings: RenderedHeading[];
+};
+
+/**
+ * 全部文章 + 构建期渲染好的 HTML 与标题树（供首页博客阅读器客户端切换，无需二次请求）。
+ * 管线与 blog/[slug] 页一致（gfm → rehype → highlight/slug）。
+ * 标题树用同一把 github-slugger 按文档序编号，slug 与 rehypeSlug 生成的 id 天然一致。
+ */
+export async function getRenderedPosts(): Promise<RenderedPost[]> {
+  const posts = getAllPosts();
+  return Promise.all(
+    posts.map(async (p) => {
+      const full = getPostBySlug(p.slug);
+      const headings: RenderedHeading[] = [];
+      const slugger = new Slugger();
+      const result = await remark()
+        .use(remarkGfm)
+        .use(() => (tree: Root) => {
+          visit(tree, "heading", (node) => {
+            const text = node.children.map((c) => ("value" in c ? c.value : "")).join("");
+            headings.push({ level: node.depth, text, slug: slugger.slug(text) });
+          });
+        })
+        .use(remarkRehype, { allowDangerousHtml: true })
+        .use(rehypeSlug)
+        .use(rehypeHighlight)
+        .use(rehypeStringify, { allowDangerousHtml: true })
+        .process(full?.content ?? "");
+      return {
+        slug: p.slug,
+        title: p.title,
+        date: p.date,
+        excerpt: p.excerpt,
+        html: result.toString(),
+        headings: headings.filter((h) => h.level === 2 || h.level === 3),
+      };
+    }),
+  );
 }

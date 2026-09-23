@@ -4,13 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 
-const DEMO_URL = process.env.NEXT_PUBLIC_DEMO_URL || "#";
+const RELEASE_URL = "https://github.com/prisflow/proactive-ai-desktop/releases";
 
 const navLinks = [
-  { href: "/#features", label: "核心能力" },
-  { href: "/#scenarios", label: "适用场景" },
-  { href: "/#workflow", label: "工作流程" },
-  { href: "/#plugins", label: "插件示例" },
+  { href: "/", label: "首页" },
   { href: "/blog", label: "博客" },
   { href: "/contact", label: "联系我们" },
 ];
@@ -39,8 +36,10 @@ export function Navbar() {
         </nav>
 
         <a
-          href={DEMO_URL}
-          className="hidden md:inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-primary text-primary-foreground text-sm font-medium whitespace-nowrap transition-all h-9 gap-1.5 px-2.5 hover:bg-primary/80"
+          href={RELEASE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden md:inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-neutral-900 text-white text-sm font-medium whitespace-nowrap transition-all h-9 gap-1.5 px-2.5 hover:bg-neutral-700"
         >
           下载体验
         </a>
@@ -81,8 +80,10 @@ export function Navbar() {
             </Link>
           ))}
           <a
-            href={DEMO_URL}
-            className="inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-primary text-primary-foreground text-sm font-medium whitespace-nowrap transition-all h-9 gap-1.5 px-2.5 hover:bg-primary/80"
+            href={RELEASE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-neutral-900 text-white text-sm font-medium whitespace-nowrap transition-all h-9 gap-1.5 px-2.5 hover:bg-neutral-700"
           >
             下载体验
           </a>

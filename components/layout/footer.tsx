@@ -1,8 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 
-const DEMO_URL = process.env.NEXT_PUBLIC_DEMO_URL || "#";
-
 export function Footer() {
   return (
     <footer className="border-t py-10 mt-20">
@@ -29,19 +27,19 @@ export function Footer() {
             <h4 className="text-sm font-medium mb-3">产品</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <Link href="/#features" className="hover:text-foreground transition-colors">
-                  核心能力
-                </Link>
-              </li>
-              <li>
-                <Link href="/#workflow" className="hover:text-foreground transition-colors">
-                  工作流程
-                </Link>
-              </li>
-              <li>
-                <a href={DEMO_URL} className="hover:text-foreground transition-colors">
+                <a
+                  href="https://github.com/prisflow/proactive-ai-desktop/releases"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-foreground transition-colors"
+                >
                   下载体验
                 </a>
+              </li>
+              <li>
+                <Link href="/blog" className="hover:text-foreground transition-colors">
+                  产品动态
+                </Link>
               </li>
             </ul>
           </div>
@@ -57,11 +55,6 @@ export function Footer() {
               <li>
                 <Link href="/contact" className="hover:text-foreground transition-colors">
                   联系我们
-                </Link>
-              </li>
-              <li>
-                <Link href="/#plugins" className="hover:text-foreground transition-colors">
-                  插件示例
                 </Link>
               </li>
             </ul>
