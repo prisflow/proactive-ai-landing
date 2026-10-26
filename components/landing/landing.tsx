@@ -10,22 +10,12 @@
 import { useEffect, useRef, useState } from "react";
 import mermaid from "mermaid";
 import type { RenderedPost } from "@/lib/blog";
+import { Mark } from "@/components/landing/mark";
+import { ProductShowcase } from "@/components/showcase/product-showcase";
 
 mermaid.initialize({ startOnLoad: false, theme: "neutral" });
 
-const DEMO_URL = process.env.NEXT_PUBLIC_DEMO_URL || "#";
 const REPO_URL = "https://github.com/prisflow/proactive-ai-desktop";
-
-/** 官方棱形标记（恢复自 public/prisflow-favicon.svg，currentColor 随主题） */
-function Mark({ size }: { size: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 1024 1024" aria-hidden>
-      <path fill="currentColor" d="M507,270.9c17.5,0,34.5,0.2,51.5-0.1c5.1-0.1,7.7,1.8,10.2,6c34.7,60,69.6,119.9,104.3,179.8 c30.4,52.5,60.6,105,90.9,157.6c0.7,1.3,1.8,2.4,1.4,4.2c-1.5,1.5-3.4,0.9-5.1,0.9c-33.7,0-67.3-0.1-101,0 c-4,0-6.3-1.4-8.3-4.8c-29.5-50.7-59.1-101.3-88.7-151.9c-28.1-48-56.3-96-84.5-144c-8.3-14.1-16.5-28.1-24.8-42.2 c-0.7-1.3-1.3-2.6-2.7-5.5C469.6,270.9,488,270.9,507,270.9z" />
-      <path fill="currentColor" d="M472,755.2c-44.2,0-87.9,0-131.3,0c-0.9-3,0.3-4.4,1.1-5.7c17.8-30.9,35.7-61.7,53.4-92.7 c2.2-3.8,5-4.1,8.7-4.1c123.6,0,247.3,0,371,0c3.8,0,7.6-0.5,11.2,0.4c0.9,1.7-0.2,2.8-0.8,3.9c-18.4,31.3-36.8,62.6-55,93.9 c-2.2,3.7-5,4.2-8.7,4.2C638.5,755.2,555.5,755.2,472,755.2z" />
-      <path fill="currentColor" d="M376.2,623.1c-24.5,43.8-48.7,87.2-72.8,130.1c-2.6,0.3-3.2-1-3.9-2.1 c-19.4-31.3-38.8-62.6-58.3-93.8c-1.9-3-1.8-5.1-0.1-8.1c45.8-77.2,91.5-154.5,137.3-231.8c19.2-32.4,38.3-64.8,57.5-97.2 c0.7-1.1,1.6-2.1,2.3-3.1c2.3,0.3,2.7,2.1,3.5,3.5c17,29.2,33.9,58.5,51.1,87.7c1.8,3.1,0.8,5.2-0.6,7.8 c-17.6,31.4-35.2,62.8-52.8,94.2C418.3,547.8,397.3,585.3,376.2,623.1z" />
-    </svg>
-  );
-}
 
 export function Landing({ posts }: { posts: RenderedPost[] }) {
   const heroBoxRef = useRef<HTMLDivElement>(null);
@@ -163,8 +153,8 @@ export function Landing({ posts }: { posts: RenderedPost[] }) {
             <span className="text-[13px] font-semibold tracking-[0.28em]">PROACTIVE AI</span>
           </div>
           <nav className="flex items-center gap-6 text-xs text-muted-foreground">
+            <a href="#product" className="transition-colors hover:text-neutral-900">产品</a>
             <a href="#blog" className="transition-colors hover:text-neutral-900">博客</a>
-            <a href={DEMO_URL} className="transition-colors hover:text-neutral-900">下载</a>
           </nav>
         </div>
         <div className="header-line mx-auto h-px max-w-6xl bg-neutral-200" />
@@ -206,8 +196,11 @@ export function Landing({ posts }: { posts: RenderedPost[] }) {
           </div>
         </section>
 
+        {/* 产品档案：Hero 之后、博客之前，图版 + 批注 + 细节行 */}
+        <ProductShowcase />
+
         {/* 博客：正文居中；目录吸顶于左侧留白（仅博客区在视口时存在），窄屏用顶部横滑条 */}
-        <section id="blog" className="relative px-6 pb-28 pt-4 md:pb-40">
+        <section id="blog" className="relative scroll-mt-24 border-t border-neutral-200 px-6 pb-28 pt-16 md:pb-40 md:pt-24">
           <div data-reveal className="mx-auto flex max-w-3xl items-baseline justify-between">
             <p className="font-mono text-[11px] tracking-[0.3em] text-neutral-500">博客 / BLOG</p>
             <p className="font-mono text-[11px] tracking-[0.2em] text-neutral-500">
@@ -218,7 +211,7 @@ export function Landing({ posts }: { posts: RenderedPost[] }) {
           {/* 章节目录轨道：绝对定位锚在博客 section 左缘留白（高度=整个博客区，不占正文布局）。
               内层 sticky 吸顶：仅博客区在视口时存在；滚动条隐藏（悬停滚轮仍可滚动）。
               内容 = 当前文章的标题树，滚动跟随高亮，点击平滑滚到对应章节 */}
-          <div className="pointer-events-none absolute inset-y-0 left-[calc(50%-40rem)] hidden w-52 min-[1440px]:block">
+          <div className="pointer-events-none absolute inset-y-0 left-[calc(50%-40rem)] hidden w-52 pt-24 min-[1440px]:block">
             <nav
               data-reveal
               aria-label="章节目录"
@@ -363,9 +356,6 @@ export function Landing({ posts }: { posts: RenderedPost[] }) {
               style={{ "--d": "0.16s" } as React.CSSProperties}
               className="mt-6 flex items-center gap-7 text-xs text-neutral-500"
             >
-              <a href={DEMO_URL} className="transition-colors hover:text-neutral-900">
-                下载
-              </a>
               <a
                 href={REPO_URL}
                 target="_blank"

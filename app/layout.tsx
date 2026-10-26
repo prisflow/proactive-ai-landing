@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="zh-CN">
       <body className="bg-white font-sans text-neutral-900 antialiased">
         <noscript>
-          <style>{`[data-reveal]{opacity:1 !important;transform:none !important}.site-header .header-inner{opacity:1 !important;pointer-events:auto !important}`}</style>
+          <style>{`[data-reveal]{opacity:1 !important;transform:none !important}[data-shot]{opacity:1 !important;transform:none !important;clip-path:none !important}.site-header .header-inner{opacity:1 !important;pointer-events:auto !important}`}</style>
         </noscript>
         {children}
       </body>

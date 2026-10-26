@@ -37,8 +37,8 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <Link href="/#blog" className="hover:text-foreground transition-colors">
-                  产品动态
+                <Link href="/#product" className="hover:text-foreground transition-colors">
+                  产品档案
                 </Link>
               </li>
             </ul>
@@ -48,7 +48,7 @@ export function Footer() {
             <h4 className="text-sm font-medium mb-3">资源</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <Link href="/blog" className="hover:text-foreground transition-colors">
+                <Link href="/#blog" className="hover:text-foreground transition-colors">
                   博客
                 </Link>
               </li>

@@ -8,6 +8,7 @@ const RELEASE_URL = "https://github.com/prisflow/proactive-ai-desktop/releases";
 
 const navLinks = [
   { href: "/", label: "首页" },
+  { href: "/#product", label: "产品" },
   { href: "/#blog", label: "博客" },
   { href: "/contact", label: "联系我们" },
 ];
