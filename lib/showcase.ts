@@ -41,6 +41,7 @@ export const proactiveSpecs = [
 export const proactiveShowcase: {
   overview: ShowcasePlate;
   features: ShowcaseFeature[];
+  details: ShowcasePlate[];
 } = {
   overview: {
     src: "/screenshots/01-overview-1200.webp",
@@ -83,8 +84,8 @@ export const proactiveShowcase: {
     },
     {
       eyebrow: "插件 / PLUGIN",
-      title: "把需求讲清楚，插件自己长出来",
-      body: "插件由对话长出来：AI 先做需求问询，再确认设定稿，分层实现并多轮试玩验证。底层仍是上下文、工具与 LLM Flow 三件套。",
+      title: "你说要什么，它来写插件",
+      body: "整个过程都在对话里完成：AI 先做需求问询，再确认设定稿，分层实现并多轮试玩验证。底层仍是上下文、工具与 LLM Flow 三件套。",
       bullets: ["需求问询 → 设定稿", "分层实现，自动校验", "多轮试玩验证"],
       plate: {
         src: "/screenshots/03-plugin-creation-800.webp",
@@ -101,6 +102,38 @@ export const proactiveShowcase: {
           "描述你想要的插件；AI 先确认战斗与恋爱的比重、角色来源与开放尺度，再进入设定稿、实现与试玩验证。",
         variant: "detail",
       },
+    },
+  ],
+  details: [
+    {
+      src: "/screenshots/04-character-sheet-800.webp",
+      srcSet:
+        "/screenshots/04-character-sheet-800.webp 800w, /screenshots/04-character-sheet-1534.webp 1534w",
+      fullSrc: "/screenshots/04-character-sheet-1534.webp",
+      sizes: "(min-width: 768px) 660px, calc(100vw - 48px)",
+      width: 1534,
+      height: 1502,
+      alt: "Proactive AI 角色卡细节：修为、体力、灵石、寿元、天资和储物袋",
+      fig: "FIG. 04",
+      title: "角色卡 · 状态",
+      caption:
+        "修为、体力、灵石、寿元、天资和储物袋都在同一张卡里。状态变了，卡片跟着重渲染，不用另开面板。",
+      variant: "detail",
+    },
+    {
+      src: "/screenshots/05-settings-600.webp",
+      srcSet:
+        "/screenshots/05-settings-600.webp 600w, /screenshots/05-settings-878.webp 878w",
+      fullSrc: "/screenshots/05-settings-878.webp",
+      sizes: "(min-width: 768px) 380px, 80vw",
+      width: 878,
+      height: 1385,
+      alt: "Proactive AI 设置面板：导入插件、外观与字体、LLM API Key 和模型配置",
+      fig: "FIG. 05",
+      title: "设置 · 本地配置",
+      caption:
+        "导入插件、切换外观、填模型 Key 都在这里。Key 和插件配置只写本机。",
+      variant: "portrait",
     },
   ],
 };

@@ -105,6 +105,26 @@ export function ProductShowcase() {
             <FeatureRow key={feature.title} feature={feature} />
           ))}
         </div>
+
+        <div className="mt-16 border-t border-neutral-200 pt-16 md:mt-24 md:pt-20">
+          <div className="flex items-baseline justify-between gap-4">
+            <p className="font-mono text-[11px] tracking-[0.3em] text-neutral-500">
+              细节 / DETAILS
+            </p>
+            <p className="font-mono text-[10px] tracking-[0.18em] text-neutral-400">
+              FIG. 04 — 05
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-10 md:grid-cols-12 md:items-start md:gap-16">
+            <div className="md:col-span-7">
+              <ScreenshotPlate plate={proactiveShowcase.details[0]} />
+            </div>
+            <div className="md:col-span-4 md:col-start-9">
+              <ScreenshotPlate plate={proactiveShowcase.details[1]} />
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
